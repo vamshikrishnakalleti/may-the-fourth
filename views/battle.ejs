@@ -32,7 +32,7 @@
     <script>
       const jsConfetti = new JSConfetti();
       async function win(id) {
-        const res = await fetch(`http://localhost:8080/winner?id=${id}`);
+        const res = await fetch(`/winner?id=${id}`);
         const data = await res.json();
         console.log(data);
         jsConfetti
