@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+  </head>
+  <body class="container mx-auto bg-blue-100">
+    <img src="/sammy.jpg" class="mx-auto w-1/4" />
+    <main class="py-10 flex flex-row">
+      <div class="w-1/2">
+        <h1 class="text-4xl text-center font-bold mb-10">
+          <%= one.name %> (Id: <%= one._id %>)
+        </h1>
+        <img
+          src="<%= one.image %>"
+          class="w-1/4 mx-auto rounded-lg mb-10"
+          onclick="win('<%= one._id %>')"
+        />
+      </div>
+      <div class="w-1/2">
+        <h1 class="text-4xl text-center font-bold mb-10">
+          <%= two.name %> (Id: <%= two._id %>)
+        </h1>
+        <img
+          src="<%= two.image %>"
+          class="w-1/4 mx-auto rounded-lg mb-10"
+          onclick="win('<%= two._id %>')"
+        />
+      </div>
+    </main>
+
+    <script>
+      const jsConfetti = new JSConfetti();
+      async function win(id) {
+        const res = await fetch(`http://localhost:8080/winner?id=${id}`);
+        const data = await res.json();
+        console.log(data);
+        jsConfetti
+          .addConfetti({
+            emojis: ["⚡️", "💥", "✨", "⚔️"],
+            emojiSize: 200,
+          })
+          .then(() => {
+            window.location.reload();
+          });
+        //window.location.reload();
+      }
+    </script>
+  </body>
+</html>
