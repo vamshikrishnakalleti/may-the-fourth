@@ -6,7 +6,7 @@ const express = require("express");
 
 let db;
 
-let client = new MongoClient(process.env.MONGODB_URI, {
+let client = new MongoClient("mongodb+srv://doadmin:show-password@db-mongodb-cluster-ccb57648.mongo.ondigitalocean.com/admin?tls=true&authSource=admin", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
